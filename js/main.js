@@ -14,7 +14,7 @@
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
           type: 'line',
           datasets: [{
-            data: [78, 81, 80, 45, 34, 12, 40],
+            data: [10, 81, 80, 45, 34, 12, 40],
             label: 'Dataset',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
@@ -334,7 +334,7 @@
     // Percent Chart
     var ctx = document.getElementById("percent-chart");
     if (ctx) {
-      ctx.height = 280;
+      ctx.height = window.innerWidth >576 ? 200 : 280;
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -685,250 +685,61 @@
     console.log(error);
   }
 
+  
   try {
-    //Sales chart
-    var ctx = document.getElementById("sales-chart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-          type: 'line',
+    $.getJSON("../VTP_PHP/json2.php",function(data){
+      let age =  [];
+      let age_number = [];
+      $.each(data,function(index,value){
+        age.push(+value.age);
+        age_number.push(+value.users);
+      });
+      //bar chart
+      var ctx = document.getElementById("barChart");
+      if (ctx) {
+        ctx.height = window.innerWidth >576 ? 200 : 280;
+        var myChart = new Chart(ctx, {
+          type: 'bar',
           defaultFontFamily: 'Poppins',
-          datasets: [{
-            label: "Foods",
-            data: [0, 30, 10, 120, 50, 63, 10],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(220,53,69,0.75)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(220,53,69,0.75)',
-          }, {
-            label: "Electronics",
-            data: [0, 50, 40, 80, 40, 79, 120],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(40,167,69,0.75)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(40,167,69,0.75)',
-          }]
-        },
-        options: {
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            titleFontSize: 12,
-            titleFontColor: '#000',
-            bodyFontColor: '#000',
-            backgroundColor: '#fff',
-            titleFontFamily: 'Poppins',
-            bodyFontFamily: 'Poppins',
-            cornerRadius: 3,
-            intersect: false,
+          data: {
+            labels: age,
+            datasets: [
+              {
+                label: "Number of users per individual age",
+                data: age_number,
+                borderColor: "rgba(0, 123, 255, 0.9)",
+                borderWidth: "0",
+                backgroundColor: "rgba(0, 123, 255, 0.5)",
+                fontFamily: "Poppins"
+              }
+            ]
           },
-          legend: {
-            display: false,
-            labels: {
-              usePointStyle: true,
-              fontFamily: 'Poppins',
+          options: {
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
+              }
+
             },
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: false,
-                labelString: 'Month'
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }],
-            yAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'Value',
-                fontFamily: "Poppins"
+            scales: {
+              xAxes: [{
+                ticks: {
+                  fontFamily: "Poppins"
 
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }]
-          },
-          title: {
-            display: false,
-            text: 'Normal Legend'
-          }
-        }
-      });
-    }
-
-
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-
-    //Team chart
-    var ctx = document.getElementById("team-chart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-          type: 'line',
-          defaultFontFamily: 'Poppins',
-          datasets: [{
-            data: [0, 7, 3, 5, 2, 10, 7],
-            label: "Expense",
-            backgroundColor: 'rgba(0,103,255,.15)',
-            borderColor: 'rgba(0,103,255,0.5)',
-            borderWidth: 3.5,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(0,103,255,0.5)',
-          },]
-        },
-        options: {
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            titleFontSize: 12,
-            titleFontColor: '#000',
-            bodyFontColor: '#000',
-            backgroundColor: '#fff',
-            titleFontFamily: 'Poppins',
-            bodyFontFamily: 'Poppins',
-            cornerRadius: 3,
-            intersect: false,
-          },
-          legend: {
-            display: false,
-            position: 'top',
-            labels: {
-              usePointStyle: true,
-              fontFamily: 'Poppins',
-            },
-
-
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: false,
-                labelString: 'Month'
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }],
-            yAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'Value',
-                fontFamily: "Poppins"
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }]
-          },
-          title: {
-            display: false,
-          }
-        }
-      });
-    }
-
-
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    //bar chart
-    var ctx = document.getElementById("barChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        defaultFontFamily: 'Poppins',
-        data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
-          datasets: [
-            {
-              label: "My First dataset",
-              data: [65, 59, 80, 81, 56, 55, 40],
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              fontFamily: "Poppins"
-            },
-            {
-              label: "My Second dataset",
-              data: [28, 48, 40, 19, 86, 27, 90],
-              borderColor: "rgba(0,0,0,0.09)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0,0,0,0.07)",
-              fontFamily: "Poppins"
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  fontFamily: "Poppins"
+                }
+              }]
             }
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
-
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
           }
-        }
-      });
-    }
-
-
+        });
+      }
+    }); 
   } catch (error) {
     console.log(error);
   }
@@ -984,215 +795,287 @@
   }
 
   try {
-
-    //line chart
-    var ctx = document.getElementById("lineChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
-          defaultFontFamily: "Poppins",
-          datasets: [
-            {
-              label: "My First dataset",
-              borderColor: "rgba(0,0,0,.09)",
-              borderWidth: "1",
-              backgroundColor: "rgba(0,0,0,.07)",
-              data: [22, 44, 67, 43, 76, 45, 12]
+    $.getJSON("../VTP_PHP/json4.php",function(data){
+      let university = [];
+      let university_number = [];
+      $.each(data,function(index,value){
+        university.push(value.university);
+        university_number.push(+value.users);
+      });
+      //line chart
+      var ctx = document.getElementById("lineChart");
+      if (ctx) {
+        ctx.height = window.innerWidth >576 ? 200 : 280;
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: university,
+            defaultFontFamily: "Poppins",
+            datasets: [
+              {
+                label: "University Diverse",
+                borderColor: "rgba(0,0,0,.09)",
+                borderWidth: "1",
+                backgroundColor: "rgba(148,0,211,0.9)",
+                data: university_number
+              }
+            ]
+          },
+          options: {
+            elements: {
+                line: {
+                    tension: 0
+                }
             },
-            {
-              label: "My Second dataset",
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "1",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              pointHighlightStroke: "rgba(26,179,148,1)",
-              data: [16, 32, 18, 26, 42, 33, 44]
-            }
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            intersect: false
-          },
-          hover: {
-            mode: 'nearest',
-            intersect: true
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
-
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
               }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
+            },
+            responsive: true,
+            tooltips: {
+              mode: 'index',
+              intersect: false
+            },
+            hover: {
+              mode: 'nearest',
+              intersect: true
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  fontFamily: "Poppins"
+
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  fontFamily: "Poppins"
+                }
+              }]
+            }
           }
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  try {
 
-        }
+    $.getJSON('../VTP_PHP/json1.php', function(data) {
+      let data_degree = [];
+      let label_degree = [];
+      $.each(data, function(fieldName, fieldValue) {
+        data_degree.push(+fieldValue.users);
+        label_degree.push(fieldValue.degree);
       });
-    }
+      //doughut chart
+      var ctx = document.getElementById("doughutChart");
+      if (ctx) {
+        ctx.height = window.innerWidth >576 ? 180 : 260;
+        var myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: data_degree,
+              backgroundColor: [
+                "rgba(255, 0, 0,0.9)",
+                "rgba(0, 255, 0,0.9)",
+                "rgba(0, 123, 255,0.5)",
+                "rgba(255,0,0,0.3)",
+                "rgba(0,255,0,0.5)"
+              ],
+              hoverBackgroundColor: [
+                "rgba(255, 0, 0,0.7)",
+                "rgba(0, 255, 0,0.7)",
+                "rgba(0, 123, 255,0.5)",
+                "rgba(0,0,0,0.07)",
+                "rgba(255,0,0,0.1)",
+                "rgba(0,255,0,0.3)"
+              ]
+            }],
+            labels: label_degree,
+          },
+          options: {
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
+              }
 
-
+            },
+            responsive: true
+          }
+        })
+      }  
+    });
   } catch (error) {
     console.log(error);
   }
 
 
   try {
-
-    //doughut chart
-    var ctx = document.getElementById("doughutChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          datasets: [{
-            data: [45, 25, 20, 10],
-            backgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.7)",
-              "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
-            ],
-            hoverBackgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.7)",
-              "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
+    $.getJSON('../VTP_PHP/json.php', function(data) {
+      const total =  +data[0].users + +data[1].users;
+      const maleLabel = data[0].gender;
+      const male_total = data[0].users;
+      const femaleLabel = data[1].gender;
+      const female_total = data[1].users;  
+      //pie chart
+      var ctx = document.getElementById("pieChart");
+      if (ctx) {
+        ctx.height = window.innerWidth >576 ? 200 : 280;
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: [male_total,female_total],
+              backgroundColor: [
+                "rgba(0, 123, 255,0.7)",
+                "rgba(255,0,0,0.7)"
+              ],
+              hoverBackgroundColor: [
+                "rgba(0, 123, 255,0.9)",
+                "rgba(255,0,0,0.9)"
+              ]
+            }],
+            labels: [
+              maleLabel+"ale: "+(male_total/total*100).toFixed(2)+"%",
+              femaleLabel+"emale: "+(female_total/total*100).toFixed(2)+"%"
             ]
-
-          }],
-          labels: [
-            "Green",
-            "Green",
-            "Green",
-            "Green"
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
           },
-          responsive: true
-        }
-      });
-    }
+          options: {
+              title: {
+                display: true,
+                text: 'Overall number of males and females'
+              },
+            //rotation: -0.3 * Math.PI,
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
+              }
 
-
-  } catch (error) {
-    console.log(error);
-  }
-
-
-  try {
-
-    //pie chart
-    var ctx = document.getElementById("pieChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          datasets: [{
-            data: [45, 25, 20, 10],
-            backgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.7)",
-              "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
-            ],
-            hoverBackgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.7)",
-              "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
-            ]
-
-          }],
-          labels: [
-            "Green",
-            "Green",
-            "Green"
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true
-        }
-      });
-    }
-
-
+            },
+            responsive: true
+          }
+        });
+      } 
+    });
+    
   } catch (error) {
     console.log(error);
   }
 
   try {
-
-    // polar chart
-    var ctx = document.getElementById("polarChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
-        type: 'polarArea',
-        data: {
-          datasets: [{
-            data: [15, 18, 9, 6, 19],
-            backgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.8)",
-              "rgba(0, 123, 255,0.7)",
-              "rgba(0,0,0,0.2)",
-              "rgba(0, 123, 255,0.5)"
-            ]
-
-          }],
-          labels: [
-            "Green",
-            "Green",
-            "Green",
-            "Green"
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true
-        }
+    $.getJSON('../VTP_PHP/json5.php', function(data) {
+      let faculty = [];
+      let faculty_number = [];
+      let x = 0;
+      $.each(data,function(index,value){
+        faculty.push(value.faculty);
+        faculty_number.push(+value.users);
       });
-    }
+      //pie chart
+      var ctx = document.getElementById("facultyPieChart");
+      if (ctx) {
+        ctx.height = window.innerWidth > 576 ? 280 : 620;
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: faculty_number ,
+              backgroundColor: [
+                "rgba(0, 123, 255,0.7)",
+                "rgba(255,0,0,0.7)",
+                "rgba(0,255,0,0.7)",
+                "rgba(0,0,255,0.7)",
+                "rgba(255,123,0,0.7)",
+                "rgba(255,0,123,0.7)",
+                "rgba(123,0,255,0.7)",
+                "rgba(123,255,0,0.7)",
+                "rgba(0,255,123,0.7)",
+                "rgba(123,0,0,0.7)",
+                "rgba(180,0,255,0.7)",
+                "rgba(0,180,255,0.7)",
+                "rgba(0,0,180,0.7)",
+                "rgba(0,123,0,0.7)",
+                "rgba(0,0,123,0.7)",
+                "rgba(0,0,220,0.7)",
+                "rgba(220,0,0,0.7)",
+                "rgba(0,220,0,0.7)",
+                "rgba(180,0,123,0.7)",
+                "rgba(0,180,123,0.7)",
+              ]
+            }],
+            labels: faculty
+          },
+          options: {
+              title: {
+                display: true,
+                text: 'Overall number of males and females'
+              },
+            //rotation: -0.3 * Math.PI,
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
+              }
+
+            },
+            responsive: true
+          }
+        });
+      } 
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    $.getJSON("../VTP_PHP/json3.php",function(data){
+      let department = [];
+      let department_number = [];
+      $.each(data,function(index,value){
+        department.push(value.department);
+        department_number.push(+value.users);
+      });
+      // polar chart
+      var ctx = document.getElementById("polarChart");
+      if (ctx) {
+        ctx.height = window.innerWidth >576 ? 200 : 280;
+        var myChart = new Chart(ctx, {
+          type: 'polarArea',
+          data: {
+            datasets: [{
+              data: department_number,
+              backgroundColor: [
+                "rgba(0, 123, 255,0.5)",
+                "rgba(255, 123, 0,0.5)",
+                "rgba(123, 255, 0,0.5)",
+                "rgba(0,255,123,0.5)",
+              ]
+
+            }],
+            labels: department
+          },
+          options: {
+            legend: {
+              position: 'top',
+              labels: {
+                fontFamily: 'Poppins'
+              }
+
+            },
+            responsive: true,
+            startAngle : -0.4 * Math.PI
+          }
+        });
+      }
+    });
 
   } catch (error) {
     console.log(error);
@@ -1203,7 +1086,7 @@
     // single bar chart
     var ctx = document.getElementById("singelBarChart");
     if (ctx) {
-      ctx.height = 150;
+      ctx.height = 130;
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
