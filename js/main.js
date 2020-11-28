@@ -687,7 +687,7 @@
 
   
   try {
-    $.getJSON("../VTP_PHP/json2.php",function(data){
+    $.getJSON("json2.php",function(data){
       let age =  [];
       let age_number = [];
       $.each(data,function(index,value){
@@ -795,7 +795,7 @@
   }
 
   try {
-    $.getJSON("../VTP_PHP/json4.php",function(data){
+    $.getJSON("json4.php",function(data){
       let university = [];
       let university_number = [];
       $.each(data,function(index,value){
@@ -865,7 +865,7 @@
   }
   try {
 
-    $.getJSON('../VTP_PHP/json1.php', function(data) {
+    $.getJSON('json1.php', function(data) {
       let data_degree = [];
       let label_degree = [];
       $.each(data, function(fieldName, fieldValue) {
@@ -918,7 +918,7 @@
 
 
   try {
-    $.getJSON('../VTP_PHP/json.php', function(data) {
+    $.getJSON('json.php', function(data) {
       const total =  +data[0].users + +data[1].users;
       const maleLabel = data[0].gender;
       const male_total = data[0].users;
@@ -971,7 +971,7 @@
   }
 
   try {
-    $.getJSON('../VTP_PHP/json5.php', function(data) {
+    $.getJSON('json5.php', function(data) {
       let faculty = [];
       let faculty_number = [];
       let x = 0;
@@ -1036,7 +1036,7 @@
     console.log(error);
   }
   try {
-    $.getJSON("../VTP_PHP/json3.php",function(data){
+    $.getJSON("json3.php",function(data){
       let department = [];
       let department_number = [];
       $.each(data,function(index,value){
