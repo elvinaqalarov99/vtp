@@ -205,7 +205,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="login-wrap">
                     <div class="login-content" style="padding-bottom: 30px;">
                         <div class="login-logo">
-                            <img src="images/icon/logo.png" alt="CoolAdmin">
+                            <img style="width: 120px;" src="images/icon/logo.png" alt="VTP" />
                         </div>
                         <div class="login-form">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">

@@ -93,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.php">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img style="width: 80px;" src="images/icon/logo.png" alt="VTP" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -146,7 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="index.php">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img style="width: 120px;" src="images/icon/logo.png" alt="VTP" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -217,7 +217,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <h5 class="name">
                                                         <?=$_COOKIE['user_name'] ?>
                                                     </h5>
-                                                    <span class="email"><?=$_COOKIE['user_email']  ?></span>
+                                                    <span class="email"><?=$_COOKIE['user_email']  ?></span><br/>
                                                     <span style="font-size: 16px;color: #999;line-height: -webkit-calc(20/13);    line-height: -moz-calc(20/13);    line-height: calc(20/13);">
                                                         <?=$_COOKIE['user_department']?></span>
                                                 </div>
