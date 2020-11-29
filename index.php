@@ -42,12 +42,20 @@ if($stmt4 = mysqli_prepare($link,$sql4)){
         $rows4 = mysqli_stmt_num_rows($stmt4);
     }
 }
+include_once 'weather.php';
 ?>
 <?php $active_dashboard = "active"; include_once "header.php"; ?>
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div class="weather" style="margin: 0 auto;">
+                            <img
+                            src="http://openweathermap.org/img/w/<?php echo $data->weather[0]->icon; ?>.png"
+                            class="weather-icon"/>
+                            <span style="font-weight: bold;"><?php echo $data->main->temp?>°C</span>
+                        </div>
+                        <div><span style="font-weight: bold;"><?php echo date("jS F, Y H:i l",$currentTime); ?></span></div>
                         <div class="row m-t-25">
                             <div class="col-sm-6 col-lg-4">
                                 <div class="overview-item overview-item--c1 p-b-25">
@@ -69,10 +77,10 @@ if($stmt4 = mysqli_prepare($link,$sql4)){
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="fa fa-user"></i>
-                                            </div>
+                                                <i style="font-size: 3rem;" class="fa fa-user"></i>
+                                            </div><br/>
                                             <div class="text">
-                                                <h2><?=$rows1?></h2>
+                                                <h2 style="margin-top: 5px; margin-bottom: 0;"><?=$rows1?></h2>
                                                 <span>HR</span>
                                             </div>
                                         </div>
@@ -84,10 +92,10 @@ if($stmt4 = mysqli_prepare($link,$sql4)){
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="fa fa-desktop"></i>
+                                                <i style="font-size: 3rem;" class="fa fa-desktop"></i>
                                             </div>
                                             <div class="text">
-                                                <h2><?=$rows2?></h2>
+                                                <h2 style="margin-top: 5px; margin-bottom: 0;"><?=$rows2?></h2>
                                                 <span>IT</span>
                                             </div>
                                         </div>
@@ -99,10 +107,10 @@ if($stmt4 = mysqli_prepare($link,$sql4)){
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="fa fa-gears"></i>
+                                                <i style="font-size: 3rem;" class="fa fa-gears"></i>
                                             </div>
                                             <div class="text">
-                                                <h2><?=$rows3?></h2>
+                                                <h2 style="margin-top: 5px; margin-bottom: 0;"><?=$rows3?></h2>
                                                 <span>Procurement</span>
                                             </div>
                                         </div>
@@ -114,10 +122,10 @@ if($stmt4 = mysqli_prepare($link,$sql4)){
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="fa fa-dollar"></i>
+                                                <i style="font-size: 3rem;" class="fa fa-dollar"></i>
                                             </div>
                                             <div class="text">
-                                                <h2><?=$rows4?></h2>
+                                                <h2 style="margin-top: 5px; margin-bottom: 0;"><?=$rows4?></h2>
                                                 <span>Accounting</span>
                                             </div>
                                         </div>

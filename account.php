@@ -8,13 +8,12 @@
 		$d = strtotime($_POST['age']);
 		$age = Date('Y')-Date('Y',$d);
 		$gender = $_POST['gender'];
-		$department = $_POST['department'];
 		$university = $_POST['university'];
 		$faculty = $_POST['faculty'];
 		$degree = $_POST['degree'];
-		$sql = "UPDATE users SET name=?,username=?,email=?,age=?,gender=?,department=?,university=?,faculty=?,degree= ? WHERE id =".$_COOKIE['user_id'];
+		$sql = "UPDATE users SET name=?,username=?,email=?,age=?,gender=?,university=?,faculty=?,degree= ? WHERE id =".$_COOKIE['user_id'];
 		if ($stmt = mysqli_prepare($link, $sql)) {
-			$stmt->bind_param('sssssssss', $name,$username,$email,$age,$gender,$department,$university,$faculty,$degree);
+			$stmt->bind_param('ssssssss', $name,$username,$email,$age,$gender,$university,$faculty,$degree);
 		    if ($stmt->execute()) {
 	            setcookie("user_email",$email,time()+(30*86400),'/');
 	            setcookie("user_name",$name,time()+(30*86400),'/');
@@ -25,7 +24,6 @@
 	            setcookie("user_faculty",$faculty,time()+(30*86400),'/');
 	            setcookie("user_degree",$degree,time()+(30*86400),'/');
 	            setcookie("user_birth",$_POST['age'],time()+(30*86400),'/');
-	            setcookie("user_department",$department,time()+(30*86400),'/');
 	            header('location:'.$_SERVER['PHP_SELF']);
 		    }
 		    $stmt->close();

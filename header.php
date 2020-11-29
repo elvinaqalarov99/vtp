@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("Asia/Baku");
+$currentTime = time();
 require_once "config.php";
 $image_to_check = "default_user.jpg";
 $u = $_COOKIE['user_id'];
@@ -7,7 +9,9 @@ $result = mysqli_query($link, $sql);
 while($row = mysqli_fetch_assoc($result)) {
   $image_to_check = $row['image'];
 }
+include_once "weather.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,10 +158,11 @@ while($row = mysqli_fetch_assoc($result)) {
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="">
+                            <form class="form-header" action="" method="POST">
                                 <input id="myInput" class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; members..." />
                             </form>
                             <div class="header-button">
+                                <div class="noti-wrap"></div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">

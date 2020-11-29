@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("Asia/Baku");
+$currentTime = time();
 require_once "config.php";
 $image_to_check = "default_user.jpg";
 $u = $_COOKIE['user_id'];
@@ -6,6 +8,26 @@ $sql = "SELECT image FROM images WHERE user_id =$u";
 $result = mysqli_query($link, $sql);
 while($row = mysqli_fetch_assoc($result)) {
   $image_to_check = $row['image'];
+}
+include_once 'weather.php';
+$msg = "";
+$title = $start = "";
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $calendar = $_POST['start_date'];
+    $title = $_POST['event_title'];
+    $start = $_POST['start_date'];
+    $sql = "INSERT INTO calendar (title, start) VALUES (?, ?)";
+    if($stmt = $link->prepare($sql)){
+        $stmt->bind_param("ss",$title_param,$start_param);
+        $title_param = $title;
+        $start_param = $start;
+        if($stmt->execute()){
+            $msg = "Added successfully";
+        }else $msg = "Sad(";
+        $stmt->close();
+    }else{
+        $msg = "Smth went wrong(";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -175,6 +197,7 @@ while($row = mysqli_fetch_assoc($result)) {
                             <form class="form-header" action="">
                                 <input id="myInput" class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; members..." />
                             </form>
+                            <div class="noti-wrap"></div>
                             <div class="header-button">
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
@@ -220,12 +243,34 @@ while($row = mysqli_fetch_assoc($result)) {
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div class="weather">
+                            <img
+                            src="http://openweathermap.org/img/w/<?php echo $data->weather[0]->icon; ?>.png"
+                            class="weather-icon"/>
+                            <span style="font-weight: bold;"><?php echo $data->main->temp?>°C</span>
+                        </div>
+                        <div style="margin-bottom: 20px;"><span style="font-weight: bold;"><?php echo date("jS F, Y H:i l",$currentTime); ?></span></div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" style="margin-bottom: 20px;">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="event_title" id="event_title" placeholder="Enter event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="datetime-local" name="start_date" class="form-control" id="start_date" name="start_date">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="zmdi zmdi-plus"></i>Add Event</button>
+                                    <small><?=$msg ?></small>
+                                </form>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                               <div class="au-card">
                                 <div id="calendar"></div>
                               </div>
-                            </div><!-- .col -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -265,38 +310,21 @@ while($row = mysqli_fetch_assoc($result)) {
 
         $(function() {
 
-          $.getJSON('api/quickstart.php',function(data){
+          $.getJSON('events.php',function(data){
             console.log(data);
-            var tues = moment().day(2).hour(19);
-
+            // var tues = moment().day(2).hour(19);
               // build trival night events for example data
             var events = data;
-
-              // var trivia_nights = []
-
-              // for(var i = 1; i <= 4; i++) {
-              //   var n = tues.clone().add(i, 'weeks');
-              //   console.log("isoString: " + n.toISOString());
-              //   trivia_nights.push({
-              //     title: 'Trival Night @ Pub XYZ',
-              //     start: n.toISOString(),
-              //     allDay: false,
-              //     url: '#'
-              //   });
-              // }
-
               // setup a few events
-              $('#calendar').fullCalendar({
+            $('#calendar').fullCalendar({
                 header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,agendaWeek,agendaDay,listWeek'
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listWeek'
                 },
                 events: events //.concat(trivia_nights)
-              });
+            });
           });
-          // for now, there is something adding a click handler to 'a'
-          
         });
     </script>
 

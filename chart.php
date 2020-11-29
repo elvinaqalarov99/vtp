@@ -3,6 +3,13 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div class="weather">
+                            <img
+                            src="http://openweathermap.org/img/w/<?php echo $data->weather[0]->icon; ?>.png"
+                            class="weather-icon"/>
+                            <span style="font-weight: bold;"><?php echo $data->main->temp?>°C</span>
+                        </div>
+                        <div style="margin-bottom: 20px;"><span style="font-weight: bold;"><?php echo date("jS F, Y H:i l",$currentTime); ?></span></div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
