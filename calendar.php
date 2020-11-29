@@ -218,6 +218,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                         <?=$_COOKIE['user_name'] ?>
                                                     </h5>
                                                     <span class="email"><?=$_COOKIE['user_email']  ?></span>
+                                                    <span style="font-size: 16px;color: #999;line-height: -webkit-calc(20/13);    line-height: -moz-calc(20/13);    line-height: calc(20/13);">
+                                                        <?=$_COOKIE['user_department']?></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">

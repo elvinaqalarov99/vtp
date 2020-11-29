@@ -199,11 +199,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body class="animsition">
-    <div class="page-wrapper">
-        <div class="page-content--bge10">
+    <div class="page-wrapper" style="background-color: rgba(0, 120, 255,0.7);">
+        <div class="page-content--bge10" >
             <div class="container">
                 <div class="login-wrap">
-                    <div class="login-content">
+                    <div class="login-content" style="padding-bottom: 30px;">
                         <div class="login-logo">
                             <img src="images/icon/logo.png" alt="CoolAdmin">
                         </div>

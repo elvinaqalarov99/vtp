@@ -137,12 +137,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <style>
+        body{ overflow-y: hidden; }
+    </style>
 </head>
 
 <body class="animsition">
-    <div class="page-wrapper">
-        <div class="page-content--bge5">
+    <div class="page-wrapper" >
+        <div class="page-content--bge5" style="background-color: rgba(0, 120, 255,0.7);">
             <div class="container">
                 <div class="login-wrap">
                     <div class="login-content">
