@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-elvin10.alwaysdata.net
--- Generation Time: Nov 29, 2020 at 07:38 PM
+-- Generation Time: Nov 29, 2020 at 11:18 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.29
 
@@ -50,8 +50,7 @@ INSERT INTO `Accounting` (`id`, `name`, `username`, `email`, `age`, `gender`, `u
 (3, 'Cavad Mustafayev', 'cavadmustafayev', 'cavadmustafayev@mail.ru', 18, 'M', 'ADIU', 'Industry Administration and Management', 'Bachelor'),
 (4, 'Elcan Durmushov', 'elcandurmushov', 'elcandurmushov@mail.ru', 17, 'M', 'ADNSU', 'Business Administration', 'Bachelor'),
 (5, 'Fidan Cafarli', 'fidanceferli', 'fidan01@mail.ru', 18, 'F', 'ADIU', 'Finance', 'Bachelor'),
-(6, 'Taleh Memmedov', 'taleh10', 'taleh_mammad@gmail.com', 29, 'M', 'ADA', 'Finance', 'Bachelor'),
-(7, 'Vahid Qasimov', 'vahidqas10', 'vahid_qas@gmail.com', 22, 'M', 'ADIU', 'Finance', 'Bachelor');
+(6, 'Taleh Memmedov', 'taleh10', 'taleh_mammad@gmail.com', 29, 'M', 'ADA', 'Finance', 'Bachelor');
 
 -- --------------------------------------------------------
 
@@ -71,7 +70,8 @@ CREATE TABLE `calendar` (
 
 INSERT INTO `calendar` (`id`, `title`, `start`) VALUES
 (1, 'Future Event', '2020-11-30T22:27'),
-(2, 'Birthday Party', '2020-12-01T15:37');
+(2, 'Birthday Party', '2020-12-01T15:37'),
+(3, 'Future Event For VTP Group', '2020-12-02T12:00');
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,6 @@ CREATE TABLE `IT` (
 --
 
 INSERT INTO `IT` (`id`, `name`, `username`, `email`, `age`, `gender`, `university`, `faculty`, `degree`) VALUES
-(2, 'Elvin Aqalarov', 'elvin10', 'elvin.aqalarov@bk.ru', 21, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor'),
 (3, 'Aidan Atakishieva', 'aydanatakishiyeva', 'atakishievvaidan@mail.ru', 20, 'F', 'ADNSU', 'IT', 'Bachelor'),
 (4, 'Elmar Karimov', 'elmarkarimov', 'elmarkarimov@mail.ru', 21, 'M', 'ADA', 'IT', 'Bachelor'),
 (5, 'Elmar Khalilov', 'elmarkhalilov', 'elmar01@mail.ru', 17, 'M', 'ADIU', 'Business', 'Bachelor'),
@@ -167,10 +166,7 @@ INSERT INTO `IT` (`id`, `name`, `username`, `email`, `age`, `gender`, `universit
 (10, 'Teymur Kosayev', 'teymur10', 'teymur.kos@gmail.com', 20, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor'),
 (11, 'Rashad Mammadzade', 'rashad10', 'rashad.mammad@gmail.com', 20, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor'),
 (12, 'Cavidan Resul', 'cavidan10', 'cavidan_resul@gmail.com', 20, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor'),
-(13, 'Nusret Kebab', 'nusret10', 'nuaret_keb@gmail.com', 52, 'M', 'Khazar', 'Chemical Engineering', 'Phd'),
-(14, 'Aidan', 'aydan_atakishieva', 'atakishievvaidan@mail.ru', 20, 'F', 'ADNSU', 'IT', 'Bachelor'),
-(15, 'Эльвин Агаларов', 'elvin101', 'elvin.aqalarov2@gmail.com', 20, 'M', 'ADU', 'Finance', 'Bachelor'),
-(16, 'Orxan Tahirov', 'orxantahirov310', 'orxantahirov310@gmail.com', 22, 'M', 'BDU', 'Tetbiqi riyaziyyatkibernetika', 'Bachelor');
+(13, 'Nusret Kebab', 'nusret10', 'nuaret_keb@gmail.com', 52, 'M', 'Khazar', 'Chemical Engineering', 'Phd');
 
 -- --------------------------------------------------------
 
@@ -255,8 +251,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `age`, `gend
 (46, 'Rashad Mammadzade', 'rashad10', 'rashad.mammad@gmail.com', '$2y$10$v74xBjOMTZFq8XC8wKm2le2qzt3m55tkdbcsjQqrFHVGrE85v/Aue', 50, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor', 'IT', '2020-11-27 20:09:39'),
 (47, 'Aysu Mecidli', 'aysumecidli10', 'aysu_mecid@gmail.com', '$2y$10$RxfgDt8p6qYtpwM4i1KVZ.aBliL5huxaTg6v1NitEwKWTSkp2CjU6', 20, 'F', 'UFAZ', 'Chemical Engineering', 'Doctoral', 'HR', '2020-11-27 21:05:38'),
 (48, 'Cavidan Resul', 'cavidan10', 'cavidan_resul@gmail.com', '$2y$10$mdBNBuk94Er9u/ZG/S8pV.ia5IZH27566t8WU/QDR4xHMWDzb1x9W', 20, 'M', 'UFAZ', 'Chemical Engineering', 'Bachelor', 'Procurement', '2020-11-27 21:20:01'),
-(49, 'Nusret Kebab', 'nusret10', 'nuaret_keb@gmail.com', '$2y$10$l1yJZAHYq58rACxDyh9bneSsh0UdFWdtjpOnHnorF1WjP7qLQ3ZuG', 52, 'M', 'Khazar', 'Chemical Engineering', 'Phd', 'IT', '2020-11-28 03:46:57'),
-(53, 'Vahid Qasimov', 'vahidqas10', 'vahid_qas@gmail.com', '$2y$10$.dWilc/2bN3EX.dkp6FUjevAPxe.ul5NZE/3PTt622YwtiPCqCrwW', 22, 'M', 'ADIU', 'Finance', 'Bachelor', 'Accounting', '2020-11-29 19:32:04');
+(49, 'Nusret Kebab', 'nusret10', 'nuaret_keb@gmail.com', '$2y$10$l1yJZAHYq58rACxDyh9bneSsh0UdFWdtjpOnHnorF1WjP7qLQ3ZuG', 52, 'M', 'Khazar', 'Chemical Engineering', 'Phd', 'IT', '2020-11-28 03:46:57');
 
 --
 -- Indexes for dumped tables
@@ -323,7 +318,7 @@ ALTER TABLE `Accounting`
 -- AUTO_INCREMENT for table `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `HR`
