@@ -67,6 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="css/modal_calendar.css">
 
     <style type="text/css">
     /* force class color to override the bootstrap base rule
@@ -265,9 +266,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 </form>
                             </div>
                         </div>
+                        <div id="myModal" class="modal">
+                          <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h4 id="title"></h4>
+                            <div id="start" style="margin-top:5px;"></div>
+                          </div>
+                        </div>
                         <div class="row">
-                            <div class="col">
-                              <div class="au-card">
+                            <div class="col" style="padding: 0;">
+                              <div class="au-card" style="padding:20px 0;">
                                 <div id="calendar"></div>
                               </div>
                             </div>
@@ -312,7 +320,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
           $.getJSON('events.php',function(data){
             console.log(data);
-            // var tues = moment().day(2).hour(19);
               // build trival night events for example data
             var events = data;
               // setup a few events
@@ -322,7 +329,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay,listWeek'
                 },
-                events: events //.concat(trivia_nights)
+                events: events,
+                eventClick:  function(event, jsEvent, view) {
+                    let span = document.getElementsByClassName("close")[0];
+                    let modal = document.getElementById("myModal");
+                    modal.style.display = "block";
+                    $('#title').html(event.title);
+                    $('#start').text(event.start);
+                    span.onclick = function() {
+                      modal.style.display = "none";
+                    }
+                    window.onclick = function(event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                      }
+                    }
+                },
+                expandRows: true
             });
           });
         });
