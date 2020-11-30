@@ -11,6 +11,7 @@ setcookie("user_faculty","",time()-3600,'/');
 setcookie("user_degree","",time()-3600,'/');
 setcookie("user_department","",time()-3600,'/');
 setcookie("user_loggedIn",true,time()-3600,'/');
+setcookie('notification',"",time()-3600,'/');
 // Redirect to login page
 header("location: login.php");
 exit;

@@ -29,6 +29,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $msg = "Smth went wrong(";
     }
 }
+$sql1 = "SELECT title,start FROM calendar";
+$result = mysqli_query($link, $sql1);
+$to_encode = array();
+while($row = mysqli_fetch_assoc($result)) {
+  $to_encode[] = $row;
+}
+$counter = 0;
+setcookie('notification',$counter,time()+(30*86400),'/');
+for($i=0;$i<count($to_encode);$i++){
+    $current_date = date("Y-m-d");
+    $strtotime_event = strtotime($to_encode[$i]['start']);
+    $event_date = date("Y-m-d",$strtotime_event);
+    if($event_date > $current_date){
+        $counter++;
+    }
+}
+$_COOKIE['notification'] = $counter;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -198,8 +215,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <form class="form-header" action="">
                                 <input id="myInput" class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; members..." />
                             </form>
-                            <div class="noti-wrap"></div>
                             <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="up_events" style="margin-right: 20px;">
+                                        <a title="Upcoming events" style="color:inherit;font-size: 25px;" href="calendar.php"><i class="fa fa-calendar"></i> <span><?=$_COOKIE['notification'] ?></span></a>
+                                    </div>
+                                </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -321,10 +342,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $(function() {
 
           $.getJSON('events.php',function(data){
-            console.log(data);
-              // build trival night events for example data
-            var events = data;
-              // setup a few events
+            let events = data;
             $('#calendar').fullCalendar({
                 header: {
                 left: 'prev,next today',
