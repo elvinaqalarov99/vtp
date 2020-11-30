@@ -113,7 +113,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <!-- Title Page-->
     <title>VTP</title>
 
